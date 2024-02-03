@@ -4,13 +4,24 @@ import 'package:flutter_rsp_game/game/widget/input_card.dart';
 
 class UserInput extends StatelessWidget {
   final bool isDone;
+  final InputType? userInput; // 사용자가 입력한 값을 전달하기 위해서
   final Function(InputType) callback;
-  const UserInput({super.key, required this.isDone, required this.callback});
+  const UserInput(
+      {super.key,
+      this.userInput,
+      required this.isDone,
+      required this.callback});
 
   @override
   Widget build(BuildContext context) {
     if (isDone) {
-      return Placeholder();
+      return Row(
+        children: [
+          const Expanded(child: SizedBox.shrink()),
+          Expanded(child: InputCard(child: Image.asset(userInput!.path))),
+          const Expanded(child: SizedBox.shrink()),
+        ],
+      );
     }
 
     return Row(

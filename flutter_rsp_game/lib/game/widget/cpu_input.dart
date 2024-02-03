@@ -9,21 +9,30 @@ class CpuInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Row(
+      children: [
+        // 결과 화면 크기를 사용자 입력 화면과 동일하게 만들기 위해서 SizedBox.shrink()로 빈 공간을 만들어서 동일한 크기로 생성하게 한다.
+        const Expanded(child: SizedBox.shrink()),
+        InputCard(
+          child: getCpuInput(),
+        ),
+        const Expanded(child: SizedBox.shrink()),
+      ],
+    );
+  }
+
+  Widget getCpuInput() {
     if (isDone) {
-      return Placeholder();
+      return Image.asset(cpuInput.path);
     }
 
-    return const Center(
-      child: InputCard(
-        child: SizedBox(
-          width: 64,
-          height: 64,
-          child: Center(
-            child: Text(
-              '?',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-            ),
-          ),
+    return const SizedBox(
+      width: 64,
+      height: 64,
+      child: Center(
+        child: Text(
+          '?',
+          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
         ),
       ),
     );
